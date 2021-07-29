@@ -79,14 +79,6 @@ userSchema.statics.findByCredentials = async function (email, password) {
   return user;
 };
 
-userSchema.pre("remove", async function (next) {
-  const user = this;
-
-  await Task.deleteMany({ owner: user._id });
-
-  next();
-});
-
 userSchema.pre("save", async function (next) {
   const user = this;
 
